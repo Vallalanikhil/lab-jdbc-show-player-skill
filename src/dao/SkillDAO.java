@@ -13,28 +13,28 @@ public class SkillDAO{
 	
 	public List<Skill> listAllSkillDAO () throws Exception {
 		
-	List<Skill> skills_list = new ArrayList<Skill>();
-		String Skills="select ID, NAMES from SKILLS order by NAMES ASC";
+	List<Skill> select_skills_list = new ArrayList<Skill>();
+		String select_skills="select ID, NAMES from select_skills order by NAMES ASC";
 		
 	 Connection cn=null;
 		   try {
 			cn=ConnectionManager.getConnection();
 
 			
-			PreparedStatement ps = cn.prepareStatement(Skills);
+			PreparedStatement ps = cn.prepareStatement(select_skills);
 			ResultSet resultSet = ps.executeQuery();
 		while(resultSet.next()) {
-			Long id = resultSet.getLong("ID");
+			long id = resultSet.getLong("ID");
 			String names = resultSet.getString("NAMES");
 			Skill skill = new Skill(id, names);
-			skills_list.add(skill);
+			select_skills_list.add(skill);
 		}
 		   } catch (Exception e) {
 			
 			e.printStackTrace();
 		}
 		  
-		   return skills_list;
+		   return select_skills_list;
 		   
 	   }
 
